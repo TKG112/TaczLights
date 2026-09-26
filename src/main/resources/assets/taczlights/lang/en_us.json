@@ -1,0 +1,12 @@
+{
+  "key.categories.taczlights": "TaCZ Lights",
+  "key.taczlights.toggle_lights": "Cycle Attachment Lights",
+  "key.taczlights.toggle_laser": "Toggle Laser",
+  "message.taczlights.light_mode": "Light: %s",
+  "message.taczlights.light_mode.off": "Off",
+  "message.taczlights.light_mode.numbered": "Mode %s",
+  "message.taczlights.laser": "Laser: %s",
+  "message.taczlights.laser.on": "On",
+  "message.taczlights.laser.ir": "IR",
+  "message.taczlights.laser.off": "Off"
+}

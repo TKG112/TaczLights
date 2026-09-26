@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.tkg.taczlights.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "BedrockAttachmentModelMixin",
+    "BedrockAttachmentModelAccessor",
+    "BedrockGunModelAccessor",
+    "BedrockGunModelMixin",
+    "BedrockModelAccessor",
+    "AttachmentDisplayMixin",
+    "ClientAttachmentIndexAccessor",
+    "DisplayManagerMixin",
+    "GunDisplayInstanceAccessor",
+    "GunDisplayMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
