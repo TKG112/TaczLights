@@ -26,7 +26,7 @@ public abstract class DisplayManagerMixin {
         int count = 0;
         for (Map.Entry<ResourceLocation, JsonElement> entry : files.entrySet()) {
             Object display = manager.getData(entry.getKey());
-            if (display != null && DisplayLights.read(entry.getKey(), display, entry.getValue())) {
+            if (display != null && DisplayLights.read(entry.getKey(), display, entry.getValue(), resourceManager)) {
                 count++;
             }
         }

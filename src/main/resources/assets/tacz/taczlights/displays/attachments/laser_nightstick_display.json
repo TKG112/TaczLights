@@ -1,0 +1,47 @@
+{
+  "default_mode": 0,
+  "ir_laser": true,
+  "laser_light": { "radius": 0.06, "softness": 0.6, "brightness": 2.0, "first_person_offset": 1.5 },
+  "modes": [
+    {
+      "name": "Flood",
+      "lights": [
+        {
+          "type": "spot",
+          "bone": "laser_beam",
+          "color": "#FFF4E0",
+          "brightness": 1.0,
+          "distance": 50,
+          "angle": 45
+        }
+      ]
+    },
+    {
+      "name": "Focused",
+      "lights": [
+        {
+          "type": "spot",
+          "bone": "laser_beam",
+          "color": "#FFF8F0",
+          "brightness": 3.0,
+          "distance": 100,
+          "angle": 15
+        }
+      ]
+    },
+    {
+      "name": "IR",
+      "lights": [
+        {
+          "type": "spot",
+          "bone": "laser_beam",
+          "color": "#FFF4E0",
+          "brightness": 0.8,
+          "distance": 50,
+          "angle": 45,
+          "ir": true
+        }
+      ]
+    }
+  ]
+}
