@@ -13,7 +13,10 @@
     "ClientAttachmentIndexAccessor",
     "DisplayManagerMixin",
     "GunDisplayInstanceAccessor",
-    "GunDisplayMixin"
+    "GameRendererMixin",
+    "GunDisplayMixin",
+    "VeilBloomRendererMixin",
+    "VeilLightRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

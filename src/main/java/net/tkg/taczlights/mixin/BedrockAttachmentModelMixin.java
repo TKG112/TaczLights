@@ -6,16 +6,19 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.client.model.BedrockAttachmentModel;
 import com.tacz.guns.client.model.bedrock.BedrockPart;
+import com.tacz.guns.util.LaserColorUtil;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.tkg.taczlights.TaczLights;
 import net.tkg.taczlights.TaczLightsComponents;
+import net.tkg.taczlights.client.beam.LaserBloom;
 import net.tkg.taczlights.client.display.DisplayLights;
 import net.tkg.taczlights.client.light.AttachmentLight;
 import net.tkg.taczlights.client.light.AttachmentLightModes;
 import net.tkg.taczlights.client.light.AttachmentLightTracker;
 import net.tkg.taczlights.client.light.IRLightBridge;
+import net.tkg.taczlights.client.light.LaserLight;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -29,7 +32,8 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * Captures light positions whenever TaCZ renders an attachment mounted on a gun, and applies its laser switch.
+ * Captures light positions whenever TaCZ renders an attachment mounted on a gun, and applies its laser switch and
+ * laser light.
  */
 @Mixin(value = BedrockAttachmentModel.class, remap = false)
 public abstract class BedrockAttachmentModelMixin {
@@ -69,14 +73,21 @@ public abstract class BedrockAttachmentModelMixin {
         if (!TaczLightsComponents.isLaserOn(attachmentItem)) {
             return;
         }
-        if (TaczLightsComponents.isLaserIR(attachmentItem) && attachmentItem.getItem() instanceof IAttachment attachment) {
-            AttachmentLightModes modes = DisplayLights.getAttachmentModes(attachment.getAttachmentId(attachmentItem));
-            if (modes != null && modes.irLaser()) {
-                IRLightBridge.renderIRLaser(() -> original.call(attachmentItem, poseStack, transformType, path));
-                return;
-            }
+        AttachmentLightModes modes = attachmentItem.getItem() instanceof IAttachment attachment
+                ? DisplayLights.getAttachmentModes(attachment.getAttachmentId(attachmentItem))
+                : null;
+        boolean ir = modes != null && modes.irLaser() && TaczLightsComponents.isLaserIR(attachmentItem);
+        LaserLight laserLight = LaserLight.forLaser(modes != null ? modes.laserLight() : Optional.empty());
+        if (laserLight != null) {
+            AttachmentLightTracker.captureLaser(laserLight, transformType, poseStack, path,
+                    LaserColorUtil.getLaserColor(attachmentItem), LaserBloom.getLaserConfig(attachmentItem).getLength(), ir);
+        }
+        if (ir) {
+            IRLightBridge.renderIRLaser(() -> original.call(attachmentItem, poseStack, transformType, path));
+            return;
         }
         original.call(attachmentItem, poseStack, transformType, path);
+        LaserBloom.render(attachmentItem, poseStack, transformType, path);
     }
 
     @Unique

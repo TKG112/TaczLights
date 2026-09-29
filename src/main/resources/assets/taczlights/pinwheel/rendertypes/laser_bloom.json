@@ -1,0 +1,38 @@
+{
+  "format": "POSITION_COLOR_TEX_LIGHTMAP",
+  "mode": "QUADS",
+  "bufferSize": "TRANSIENT",
+  "sort": false,
+  "affectsCrumbling": false,
+  "outline": false,
+  "layers": [
+    {
+      "type": "minecraft:texture",
+      "texture": "tacz:textures/entity/beam.png"
+    },
+    {
+      "type": "veil:shader",
+      "name": "taczlights:laser_bloom"
+    },
+    {
+      "type": "minecraft:output",
+      "framebuffer": "taczlights:laser_bloom"
+    },
+    {
+      "type": "minecraft:transparency",
+      "mode": "additive"
+    },
+    {
+      "type": "minecraft:write_mask",
+      "depth": false
+    },
+    {
+      "type": "minecraft:depth_test",
+      "mode": "lequal"
+    },
+    {
+      "type": "minecraft:cull",
+      "face": "none"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.tkg.taczlights.mixin.veilfix",
+  "plugin": "net.tkg.taczlights.client.veilfix.VeilFixesMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "AdvancedFboBuilderAccessor",
+    "DSAAdvancedFboImplMixin",
+    "DSAVanillaAdvancedFboWrapperMixin",
+    "DynamicBufferManagerMixin",
+    "VanillaAdvancedFboWrapperMixin",
+    "VeilFirstPersonRendererMixin",
+    "VeilRenderSystemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "vertex": "veil:blit_screen",
+  "fragment": "taczlights:laser_bloom_hand_mask",
+  "textures": {
+    "HandDepth": {
+      "type": "framebuffer",
+      "name": "veil:first_person:depth"
+    }
+  }
+}
